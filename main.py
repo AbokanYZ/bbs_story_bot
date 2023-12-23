@@ -18,7 +18,7 @@ def findAndClick(path):
 def storyMode():
     inMission = True # We consider starting the bot in a mission
 
-    startFailed = 0
+    startFailed, auto = 0, 0
 
     print('Press "Ctrl+C" for break the script')
 
@@ -26,14 +26,15 @@ def storyMode():
 
         if startFailed < 10:
             if inMission:
-                if findAndClick('assets\\skip.jpg'):
-                    print('Conversation skipped')
-                    continue
-
-                elif findAndClick("assets\\auto.png"):
+                if findAndClick("assets\\auto.png") and auto == 0:
+                    auto += 1
                     print('The bot is running...')
                     time.sleep(60)
                     print('The bot completed the quest')
+                    continue
+            
+                elif findAndClick('assets\\skip.jpg'):
+                    print('Conversation skipped')
                     continue
 
                 elif findAndClick('assets\\skip.jpg'):
@@ -54,6 +55,7 @@ def storyMode():
             else: # What to do when we're not in a mission
 
                 if findAndClick('assets\\prep_quest.jpg'):
+                    time.sleep(5)
                     continue
                 elif findAndClick('assets\\start_quest.jpg'):
                     inMission = True
