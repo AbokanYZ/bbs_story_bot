@@ -2,6 +2,7 @@ import pyautogui as pag
 import PIL
 import time
 import keyboard
+import sys
 
 def findAndClick(path):
     # Will find the image, then click it. 
@@ -54,7 +55,10 @@ def storyMode():
 
             else: # What to do when we're not in a mission
 
-                if findAndClick('assets\\prep_quest.jpg'):
+                if findAndClick('assets\\skip.jpg'):
+                    print('Conversation skipped')
+
+                elif findAndClick('assets\\prep_quest.jpg'):
                     time.sleep(5)
                     continue
                 elif findAndClick('assets\\start_quest.jpg'):
@@ -67,4 +71,18 @@ def storyMode():
         else:
             return
 
-storyMode()
+# def secondaryQuest(): 
+
+
+if len(sys.argv) != 2:
+    print("Usage: python main.py <mode> ('story', 'secondary')")
+    sys.exit(1)
+
+mode = sys.argv[1].lower()
+
+if mode == "story":
+    storyMode()
+elif mode == "secondary":
+    pass
+else:
+    print('No mode selected')
