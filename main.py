@@ -3,19 +3,6 @@ import PIL
 import time
 import sys
 
-path = {
-    "auto": "assets\\auto.png",
-    "skip": "assets\\skip.jpg",
-    "friend_request": "assets\\friend_request.jpg",
-    "touch_screen": "assets\\touch_screen.jpg",
-    "next_quest": "assets\\next_quest.png",
-    "prep_quest": "assets\\prep_quest.jpg",
-    "start_quest": "assets\\start_quest.jpg",
-    "gift": "assets\\close_gift.jpg",
-    "limited": "assets\\limited.jpg",
-    "hard": "assets\\hard.jpg",
-}
-
 def findAndClick(path):
     # Will find the image, then click it. 
     # Returns false and terminates if nothing is found
@@ -31,7 +18,7 @@ def findAndClick(path):
 def storyMode():
     inMission = True # We consider starting the bot in a mission
 
-    startFailed, auto = 0, 0
+    startFailed = auto = 0
 
     print('Press "Ctrl+C" for break the script')
 
@@ -44,7 +31,6 @@ def storyMode():
                     print('The bot is running...')
                     time.sleep(60) # Until the quest is over
                     print('The bot completed the quest')
-                    continue
             
                 elif findAndClick('assets\\skip.jpg'):
                     print('Conversation skipped')
@@ -59,14 +45,14 @@ def storyMode():
                 elif findAndClick("assets\\next_quest.png"):
                     inMission = False
                     time.sleep(5)
-                    continue
-
-                print(" ")
 
             else: # What to do when we're not in a mission
 
+                pag.click(x=1054, y=826)
+                
                 if findAndClick('assets\\skip.jpg'):
                     print('Conversation skipped')
+                    time.sleep(5)
 
                 elif findAndClick('assets\\prep_quest.jpg'):
                     time.sleep(5)
