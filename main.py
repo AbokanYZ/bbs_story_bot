@@ -34,7 +34,6 @@ def storyMode():
             
                 elif findAndClick('assets\\skip.jpg'):
                     print('Conversation skipped')
-                    time.sleep(2)
 
                 elif findAndClick('assets\\friend_request.jpg'):
                     pass
@@ -52,7 +51,6 @@ def storyMode():
                 
                 if findAndClick('assets\\skip.jpg'):
                     print('Conversation skipped')
-                    time.sleep(5)
 
                 elif findAndClick('assets\\prep_quest.jpg'):
                     time.sleep(5)
